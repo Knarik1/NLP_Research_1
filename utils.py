@@ -82,8 +82,9 @@ def create_corpus(text_arr):
     corpus = []
 
     for doc in text_arr:
-        prep_doc = preprocess_txt(doc)                            
-        corpus.append(prep_doc)
+        prep_doc = preprocess_txt(doc)
+	if len(prep_doc) != 0:                         
+            corpus.append(prep_doc)
         
     return corpus  
 
