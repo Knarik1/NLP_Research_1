@@ -78,15 +78,18 @@ def preprocess_txt(doc):
     return doc_tokenized_spacy_nltk 
 
 
-def create_corpus(text_arr):
+def create_corpus(text_arr, label_arr):
     corpus = []
+    labels = []
 
-    for doc in text_arr:
+    for doc,l in zip(text_arr, label_arr):
         prep_doc = preprocess_txt(doc)
-	if len(prep_doc) != 0:                         
-            corpus.append(prep_doc)
         
-    return corpus  
+        if len(prep_doc) != 0:                         
+            corpus.append(prep_doc)
+            labels.append(l)
+        
+    return corpus, labels  
 
 def create_vocab(corpus):
     vocab = set(token for doc in corpus for token in doc)
